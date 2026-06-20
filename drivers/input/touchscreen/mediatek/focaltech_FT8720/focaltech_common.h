@@ -15,18 +15,18 @@
  *
  */
 /*****************************************************************************
- *
- * File Name: focaltech_common.h
- *
- * Author: Focaltech Driver Team
- *
- * Created: 2016-08-16
- *
- * Abstract:
- *
- * Reference:
- *
- *****************************************************************************/
+*
+* File Name: focaltech_common.h
+*
+* Author: Focaltech Driver Team
+*
+* Created: 2016-08-16
+*
+* Abstract:
+*
+* Reference:
+*
+*****************************************************************************/
 
 #ifndef __LINUX_FOCALTECH_COMMON_H__
 #define __LINUX_FOCALTECH_COMMON_H__
@@ -34,8 +34,8 @@
 #include "focaltech_config.h"
 
 /*****************************************************************************
- * Macro definitions using #define
- *****************************************************************************/
+* Macro definitions using #define
+*****************************************************************************/
 #define FTS_DRIVER_VERSION                  "Focaltech V3.4 20211214"
 
 #define BYTE_OFF_0(x)           (u8)((x) & 0xFF)
@@ -108,15 +108,15 @@
 #define FTS_SYSFS_ECHO_OFF(buf)     (buf[0] == '0')
 
 #define kfree_safe(pbuf) do {\
-if (pbuf) {\
-    kfree(pbuf);\
-    pbuf = NULL;\
-}\
+    if (pbuf) {\
+        kfree(pbuf);\
+        pbuf = NULL;\
+    }\
 } while(0)
 
 /*****************************************************************************
- *  Alternative mode (When something goes wrong, the modules may be able to solve the problem.)
- *****************************************************************************/
+*  Alternative mode (When something goes wrong, the modules may be able to solve the problem.)
+*****************************************************************************/
 /*
  * point report check
  * default: disable
@@ -124,8 +124,8 @@ if (pbuf) {\
 #define FTS_POINT_REPORT_CHECK_EN               0
 
 /*****************************************************************************
- * Global variable or extern global variabls/functions
- *****************************************************************************/
+* Global variable or extern global variabls/functions
+*****************************************************************************/
 struct ft_chip_t {
     u16 type;
     u8 chip_idh;
@@ -151,19 +151,19 @@ struct ts_ic_info {
 };
 
 /*****************************************************************************
- * DEBUG function define here
- *****************************************************************************/
+* DEBUG function define here
+*****************************************************************************/
 #if FTS_DEBUG_EN
 #define FTS_DEBUG(fmt, args...) do { \
-printk("[FTS_TS]%s:"fmt"\n", __func__, ##args); \
+pr_debug("[FTS_TS]%s:"fmt"\n", __func__, ##args); \
 } while (0)
 
 #define FTS_FUNC_ENTER() do { \
-printk("[FTS_TS]%s: Enter\n", __func__); \
+pr_debug("[FTS_TS]%s: Enter\n", __func__); \
 } while (0)
 
 #define FTS_FUNC_EXIT() do { \
-printk("[FTS_TS]%s: Exit(%d)\n", __func__, __LINE__); \
+pr_debug("[FTS_TS]%s: Exit(%d)\n", __func__, __LINE__); \
 } while (0)
 #else /* #if FTS_DEBUG_EN*/
 #define FTS_DEBUG(fmt, args...)
@@ -172,10 +172,10 @@ printk("[FTS_TS]%s: Exit(%d)\n", __func__, __LINE__); \
 #endif
 
 #define FTS_INFO(fmt, args...) do { \
-printk(KERN_INFO "[FTS_TS/I]%s:"fmt"\n", __func__, ##args); \
+    printk(KERN_INFO "[FTS_TS/I]%s:"fmt"\n", __func__, ##args); \
 } while (0)
 
 #define FTS_ERROR(fmt, args...) do { \
-printk(KERN_ERR "[FTS_TS/E]%s:"fmt"\n", __func__, ##args); \
+    printk(KERN_ERR "[FTS_TS/E]%s:"fmt"\n", __func__, ##args); \
 } while (0)
 #endif /* __LINUX_FOCALTECH_COMMON_H__ */
